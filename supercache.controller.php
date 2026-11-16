@@ -1272,7 +1272,7 @@ class SuperCacheController extends SuperCache
 			$oWidgetController = isset($oWidgetController) ? $oWidgetController : getController('widget');
 			$widget_content = $oWidgetController->compileWidgetStyle($widget_attrs->widgetstyle, $widget_attrs->widget, $widget_content, $widget_attrs, false);
 		}
-		$outer_styles = preg_replace('/url\((.+)(\/?)none\)/is', '', $widget_attrs->style);
+		$outer_styles = preg_replace('/url\((.+)(\/?)none\)/is', '', $widget_attrs->style ?? '');
 		$output = sprintf('<div class="xe-widget-wrapper %s" %sstyle="%s">%s</div>', $widget_attrs->css_class ?? '', $widget_attrs->id ?? '', $outer_styles, $widget_content);
 
 		// Return the result.
