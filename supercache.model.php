@@ -750,6 +750,10 @@ class SuperCacheModel extends SuperCache
 		{
 			$output->data = array();
 		}
+		if (!$list_count)
+		{
+			$list_count = $total_count;
+		}
 
 		// Fill in virtual numbers.
 		$virtual_number = $total_count - (($page - 1) * $list_count);
@@ -758,7 +762,7 @@ class SuperCacheModel extends SuperCache
 
 		// Fill in pagination fields.
 		$output->total_count = intval($total_count);
-		$output->total_page = intval(max(1, ceil($total_count / $list_count)));
+		$output->total_page = intval(max(1, ceil($total_count / ($list_count ?: 1))));
 		$output->page = intval($page);
 		$output->page_navigation = new PageHandler($output->total_count, $output->total_page, $output->page, intval($page_count));
 	}
